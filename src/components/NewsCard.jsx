@@ -1,9 +1,11 @@
 import { FaRegBookmark, FaRegEye, FaStar } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
 import { MdShare } from "react-icons/md";
+import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
   const {
+    id,
     title,
     rating,
     total_view,
@@ -48,9 +50,12 @@ const NewsCard = ({ news }) => {
 
       <div className="card-body">
         <h2 className="card-title text-lg font-bold">{title}</h2>
-        <p className="text-sm text-gray-700">
-          {details.length > 200 ? details.slice(0, 200) + "..." : details}
-        </p>
+        <>
+          { details.slice(0, 200)}...
+          <Link to={`/news-details/${id}`} className="text-primary font-semibold cursor-pointer hover:underline">
+            Read More
+          </Link>
+        </>
         <div className="text-primary mt-2 text-sm flex flex-wrap gap-2">
           {tags.map((tag, idx) => (
             <span key={idx} className="badge badge-outline">
